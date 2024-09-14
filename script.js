@@ -1,4 +1,3 @@
-// JavaScript setup
 const canvas = document.getElementById('chessBoard');
 const ctx = canvas.getContext('2d');
 const pieceMenu = document.getElementById('piece-menu');
@@ -9,7 +8,15 @@ const clearButton = document.getElementById('clearBoard');
 let isDrawingMode = false;
 let currentPiece = null;
 let isDrawing = false;
-let drawingContext = canvas.getContext('2d');
+
+// Drawing mode for touch compatibility
+function getTouchPos(canvasDom, touchEvent) {
+    const rect = canvasDom.getBoundingClientRect();
+    return {
+        x: touchEvent.touches[0].clientX - rect.left,
+        y: touchEvent.touches[0].clientY - rect.top
+    };
+}
 
 // Chessboard Setup
 const boardSize = 4;
@@ -37,7 +44,7 @@ pieceMenu.addEventListener('click', (e) => {
     }
 });
 
-// Place a chess piece on the board
+// Place a chess piece on the board (works for both mobile and desktop)
 canvas.addEventListener('click', (e) => {
     if (currentPiece && !isDrawingMode) {
         const x = Math.floor(e.offsetX / squareSize) * squareSize;
@@ -56,7 +63,7 @@ drawButton.addEventListener('click', () => {
     canvas.style.cursor = isDrawingMode ? 'crosshair' : 'default';
 });
 
-// Drawing functionality
+// Drawing functionality (mouse)
 canvas.addEventListener('mousedown', () => {
     if (isDrawingMode) {
         isDrawing = true;
@@ -64,29 +71,57 @@ canvas.addEventListener('mousedown', () => {
 });
 canvas.addEventListener('mousemove', (e) => {
     if (isDrawingMode && isDrawing) {
-        drawingContext.strokeStyle = 'red';
-        drawingContext.lineWidth = 4;
-        drawingContext.lineTo(e.offsetX, e.offsetY);
-        drawingContext.stroke();
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 4;
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
     }
 });
 canvas.addEventListener('mouseup', () => {
     if (isDrawingMode) {
         isDrawing = false;
-        drawingContext.beginPath();
+        ctx.beginPath();
+    }
+});
+
+// Drawing functionality (touch)
+canvas.addEventListener('touchstart', (e) => {
+    if (isDrawingMode) {
+        e.preventDefault();
+        isDrawing = true;
+        const pos = getTouchPos(canvas, e);
+        ctx.moveTo(pos.x, pos.y);
+    }
+});
+
+canvas.addEventListener('touchmove', (e) => {
+    if (isDrawingMode && isDrawing) {
+        e.preventDefault();
+        const pos = getTouchPos(canvas, e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+    }
+});
+
+canvas.addEventListener('touchend', () => {
+    if (isDrawingMode) {
+        isDrawing = false;
+        ctx.beginPath();
     }
 });
 
 // Download board as an image
 downloadButton.addEventListener('click', () => {
     const link = document.createElement('a');
-    link.download = `RogersChessTool_${Date.now()}.png`;
+    link.download = `4x4ChessTool_${Date.now()}.png`;
     link.href = canvas.toDataURL();
     link.click();
 });
 
 // Clear board
 clearButton.addEventListener('click', () => {
-    drawingContext.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBoard();
 });
