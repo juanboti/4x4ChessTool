@@ -1,27 +1,42 @@
 body {
     display: flex;
     font-family: Arial, sans-serif;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden;
 }
 
 #app {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
+    max-width: 100%;
 }
 
 #board-container {
     position: relative;
+    width: 90vw;
+    max-width: 400px;
 }
 
 #chessBoard {
+    width: 100%;
+    height: auto;
     border: 5px solid black;
 }
 
 #axis {
     position: absolute;
-    bottom: -20px;
+    bottom: -30px;
     left: 10px;
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 #left-numbers {
@@ -34,24 +49,22 @@ body {
     height: 100%;
 }
 
-#left-numbers span {
+#left-numbers span, #bottom-letters span {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #bottom-letters {
     display: flex;
     justify-content: space-between;
-}
-
-#bottom-letters span {
-    font-weight: bold;
-    font-size: 20px;
+    width: 100%;
 }
 
 #menu {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 400px;
 }
 
 #piece-menu {
@@ -61,15 +74,37 @@ body {
 }
 
 .piece {
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    max-width: 80px;
+    height: auto;
     cursor: pointer;
     border: 2px solid black;
 }
 
 #controls {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Media Query for small mobile screens */
+@media (max-width: 600px) {
+    #app {
+        gap: 10px;
+    }
+
+    #board-container {
+        width: 95vw;
+        max-width: 300px;
+    }
+
+    #piece-menu .piece {
+        max-width: 60px;
+    }
+
+    #controls button {
+        font-size: 14px;
+    }
 }
