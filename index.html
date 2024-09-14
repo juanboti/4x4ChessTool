@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogers Chess Tool</title>
+
+</head>
+<body>
+    <div id="app">
+        <div id="board-container">
+            <canvas id="chessBoard" width="400" height="400"></canvas>
+            <div id="axis">
+                <div id="left-numbers">
+                    <span>1</span><span>2</span><span>3</span><span>4</span>
+                </div>
+                <div id="bottom-letters">
+                    <span>a</span><span>b</span><span>c</span><span>D</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="menu">
+            <h3>Chess Pieces</h3>
+            <div id="piece-menu">
+                <!-- First row -->
+                <img src="black_pawn.png" id="blackPawn" class="piece" alt="Black Pawn">
+                <img src="black_queen.png" id="blackQueen" class="piece" alt="Black Queen">
+                <img src="black_king.png" id="blackKing" class="piece" alt="Black King">
+                <!-- Second row -->
+                <img src="black_rook.png" id="blackRook" class="piece" alt="Black Rook">
+                <img src="black_knight.png" id="blackKnight" class="piece" alt="Black Knight">
+                <img src="black_bishop.png" id="blackBishop" class="piece" alt="Black Bishop">
+                <!-- Third row -->
+                <img src="white_pawn.png" id="whitePawn" class="piece" alt="White Pawn">
+                <img src="white_queen.png" id="whiteQueen" class="piece" alt="White Queen">
+                <img src="white_king.png" id="whiteKing" class="piece" alt="White King">
+                <!-- Fourth row -->
+                <img src="white_rook.png" id="whiteRook" class="piece" alt="White Rook">
+                <img src="white_knight.png" id="whiteKnight" class="piece" alt="White Knight">
+                <img src="white_bishop.png" id="whiteBishop" class="piece" alt="White Bishop">
+            </div>
+        </div>
+
+        <div id="controls">
+            <button id="drawMode">Toggle Drawing Mode</button>
+            <button id="download">Download Screenshot</button>
+            <button id="clearBoard">Clear Board</button>
+        </div>
+    </div>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="script.js"></script>
+
+</body>
+</html>

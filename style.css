@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+}
+
+#app {
+    display: flex;
+    gap: 20px;
+}
+
+#board-container {
+    position: relative;
+}
+
+#chessBoard {
+    border: 5px solid black;
+}
+
+#axis {
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#left-numbers {
+    position: absolute;
+    top: 0;
+    left: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#left-numbers span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#bottom-letters {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bottom-letters span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+}
+
+#piece-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.piece {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+#controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
